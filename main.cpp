@@ -1,3 +1,9 @@
+/* Alexa Brown
+ * CSC 112
+ * Due 10/03/19
+ */
+
+
 #include <iostream>
 #include <vector>
 #include <ctime>
