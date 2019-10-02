@@ -75,11 +75,15 @@ int main(int argc, char* argv[]) {
         assert(v.at(i-1) <= v.at(i));
     }
 
-
-    // check output, make sure array is sorted after bubbleSort
-    for(int i = 1; i < length; i++) {
+   /*for (int i = 1; i < length ; i++){
         assert(arr[i-1] <= arr[i]);
-    }
+    }*/
+
+   // check output, make sure array is sorted after bubbleSort
+   /* for(int i = 0; i < length; i++) {
+        assert(arr[i] <= arr[i+1]);
+    }*/
+  //  assert(arr[i] <= arr[i+1]);
 
     clock_t start_bubbleSort = clock();
     // sort array using bubbleSort
@@ -100,11 +104,17 @@ int main(int argc, char* argv[]) {
         cout << arr[i] << '\t';
     }
 
+   // cout << "mergeSort time: " << end_mergeSort-start_mergeSort<< endl;
     // print elapsed time for mergeSort and bubbleSort
     double elapsed_mergeSort = double(end_mergeSort - start_mergeSort) / CLOCKS_PER_SEC;
     double elapsed_bubbleSort = double(end_bubbleSort - start_bubbleSort) / CLOCKS_PER_SEC;
 
-    cout << elapsed_mergeSort << " " << elapsed_bubbleSort << endl;
+    cout << endl;
+
+    cout << "mergeSort time: " << elapsed_mergeSort << endl;
+    cout << "bubblesort time: " << elapsed_bubbleSort << endl;
+    //to print << filename.txt
+
 
     delete arr;
 
@@ -155,7 +165,29 @@ void swap(int *a, int *b) {
 
 // BubbleSort function
 void bubbleSort(int *a, int n) {
+
+    bool IsSorted;
+
+    for(int i=0; i<n; i++){
+        IsSorted = true; // during every iteration, array has potential of being sorted
+        for(int j = 0; j < n-i-1; j++)
+        {
+            if(a[j]>=a[j+1])
+            {
+                swap(a[j], a[j+1]);
+                IsSorted = false; // if swapped, the array was not sorted so sorted is false
+            }
+        }
+        if(IsSorted) { // if no swaps were made, array was sorted, so break
+            break;
+        }
+    }
+
+
+
     /* your code here */
+    /*
+     * with recursion instead of while loop
     if (n == 1){
         return;
     }
@@ -164,5 +196,5 @@ void bubbleSort(int *a, int n) {
             swap (a[i], a[i+1]);
         }
     }
-    bubbleSort(a, n-1);
+    bubbleSort(a, n-1);*/
 }
